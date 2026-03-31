@@ -49,6 +49,7 @@ change_to = direction
 # Initial Score
 score = 0
 
+
 # Displaying score function
 def show_score(choice, color, font, size):
     
@@ -63,6 +64,7 @@ def show_score(choice, color, font, size):
 
     # Displaying text
     game_window.blit(score_surface, score_rect)
+
 
 # Game over function
 def game_over():
@@ -92,3 +94,28 @@ def game_over():
     # Quit the program
     quit()
 
+
+# Main Function
+while True:
+
+    # Handling key events
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                change_to = 'UP'
+            if event.key == pygame.K_DOWN:
+                change_to = 'DOWN'
+            if event.key == pygame.K_LEFT:
+                change_to = 'LEFT'
+            if event.key == pygame.K_RIGHT:
+                change_to = 'RIGHT'
+    
+    # If two keys pressed simultaneously we don't want snake to move into two directions simultaneously
+    if change_to == 'UP' and direction != 'DOWN':
+        direction = 'UP'
+    if change_to == 'DOWN' and direction != 'UP':
+        direction = 'DOWN'
+    if change_to == 'LEFT' and direction != 'RIGHT':
+        direction = 'LEFT'
+    if change_to == 'RIGHT' and direction != 'LEFT':
+        direction = 'RIGHT'
