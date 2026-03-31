@@ -30,8 +30,7 @@ fps = pygame.time.Clock()
 # Defining snake default position
 snake_position = [100, 50]
 
-# Defining first 4 blocks of snake
-# Body
+# Defining first 4 blocks of snake body
 snake_body = [  [100, 50],
                 [90, 50],
                 [80, 50],
@@ -43,8 +42,7 @@ fruit_position = [random.randrange(1, (window_x//10)) * 10,
                   random.randrange(1, (window_y//10)) * 10]
 fruit_spawn = True
 
-# Setting default snake direction
-# Towards right
+# Setting default snake direction towards right
 direction = 'RIGHT'
 change_to = direction
 
@@ -57,14 +55,40 @@ def show_score(choice, color, font, size):
     # creating font object score_font
     score_font = pygame.font.SysFont(font,size)
 
-    # Create the display surface object
-    # Score_surface
+    # Create the display surface object Score_surface
     score_surface = score_font.render('Score : ' + str(score), True, color)
 
-    # Create a rectangular object for the
-    # text surface object
+    # Create a rectangular object for the text surface object
     score_rect = score_surface.get_rect()
 
     # Displaying text
     game_window.blit(score_surface, score_rect)
+
+# Game over function
+def game_over():
+
+    # Creating font object my_font
+    my_font = pygame.font.SysFont('times new roman', 50)
+
+    # Creating a text surface on which text will be drawn
+    game_over_surface = my_font.render('Your Score is : ' + str(score), True, red)
+
+    # create a rectangular object for the text surface object
+    game_over_rect = game_over_surface.get_rect()
+
+    # Setting position of the text
+    game_over_rect.midtop = (window_x/2, window_y/4)
+
+    # Blit will draw the text on screen
+    game_window.blit(game_over_surface, game_over_rect)
+    pygame.display.flip()
+
+    # After 2 seconds we will quit the program
+    time.sleep(2)
+
+    # Deactivating pygame library
+    pygame.quit()
+
+    # Quit the program
+    quit()
 
