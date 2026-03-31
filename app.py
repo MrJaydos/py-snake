@@ -47,3 +47,24 @@ fruit_spawn = True
 # Towards right
 direction = 'RIGHT'
 change_to = direction
+
+# Initial Score
+score = 0
+
+# Displaying score function
+def show_score(choice, color, font, size):
+    
+    # creating font object score_font
+    score_font = pygame.font.SysFont(font,size)
+
+    # Create the display surface object
+    # Score_surface
+    score_surface = score_font.render('Score : ' + str(score), True, color)
+
+    # Create a rectangular object for the
+    # text surface object
+    score_rect = score_surface.get_rect()
+
+    # Displaying text
+    game_window.blit(score_surface, score_rect)
+
